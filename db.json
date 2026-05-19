@@ -1,0 +1,40 @@
+{
+  "requests": [
+    {
+      "id": "1",
+      "title": "Drinking Water Needed",
+      "location": "Gandhipuram",
+      "urgency": "High",
+      "category": "Supplies",
+      "status": "Open",
+      "description": "We need 100 liters of sealed drinking water for the relief camp at the main school."
+    },
+    {
+      "id": "2",
+      "title": "Volunteers for Debris Cleanup",
+      "location": "Ukkadam",
+      "urgency": "Medium",
+      "category": "Manpower",
+      "status": "Open",
+      "description": "Need 10 strong volunteers to help clear fallen branches near the lake road."
+    },
+    {
+      "id": "3",
+      "title": "Medical First Aid Kits",
+      "location": "Peelamedu",
+      "urgency": "High",
+      "category": "Medical",
+      "status": "Claimed",
+      "description": "Urgent need for bandages, antiseptics, and basic pain relievers."
+    },
+    {
+      "id": "4",
+      "title": "Blankets & Warm Clothes",
+      "location": "RS Puram",
+      "urgency": "Low",
+      "category": "Supplies",
+      "status": "Open",
+      "description": "Collecting gently used warm clothes and blankets for displaced families."
+    }
+  ]
+}
