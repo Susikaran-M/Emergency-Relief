@@ -1,9 +1,9 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, useMemo } from "react";
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [requests, setRequests] = useState([]);
-
+  const [filterCategory, setFilterCategory] = useState("All");
  
   useEffect( ()=>{
      const fetchRequests = async () => {
@@ -21,6 +21,12 @@ const Home = () => {
     }
   };
     fetchRequests()}, []);
+  const filterRequests=useMemo(() => {
+    if(filterCategory === "All"){
+      return requests;
+    }
+    return requests.filter((req) => req.category === filterCategory);
+  },[requests,filterCategory]);
   if(loading){
     return <div className="p-8 text-xl font-bold text-blue-600">Loading live data from server...</div>;
   }
@@ -31,8 +37,14 @@ const Home = () => {
  
    <div className="container mx-auto p-8">
         <h1 className="text-2xl font-bold mb-6 text-gray-800">Live Relief Requests</h1>
+        <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
+          <option value="All">All Categories</option>
+          <option value="Medical">Medical</option>
+          <option value="Manpower">Manpower</option>
+          <option value="Supplies">Supplies</option>
+        </select>
         <div className="space-y-4">
-          {requests.map((req) => (
+          {filterRequests.map((req) => (
           <div key={req.id} className="bg-white p-4 rounded-lg shadow border border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">{req.title}</h2>
               <p className="text-gray-600 mt-1">
