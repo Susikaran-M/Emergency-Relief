@@ -33,8 +33,9 @@
       "location": "RS Puram",
       "urgency": "Low",
       "category": "Supplies",
-      "status": "Open",
+      "status": "Claimed",
       "description": "Collecting gently used warm clothes and blankets for displaced families."
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -22,6 +22,31 @@ const Home = () => {
     }
   };
     fetchRequests()}, []);
+  const handleClaimRequest = async (id) => {
+    try{
+      //sending the patch request
+      const response = await fetch(`http://localhost:8000/requests/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status: "Claimed" })
+      });
+      if(!response.ok) {
+        throw new Error("Failed to claim request");
+      }
+
+      // Updateing the request status in the UI
+      setRequests( (prevRequests) => 
+        prevRequests.map(req => 
+          req.id === id ? { ...req, status: "Claimed" } : req
+        )
+      );
+    }
+    catch(err){
+      console.error("Error claiming request:", err);
+    }
+  }
   const filterRequests=useMemo(() => {
     return requests.filter((req) => {
       const categoryMatch = (filterCategory==="All" || req.category === filterCategory);
@@ -99,7 +124,9 @@ const Home = () => {
             <p className="text-gray-600 text-sm mb-8 line-clamp-2 flex-grow">{req.description}</p>
             
             {/* The Action Button (Changes color if status is 'Claimed') */}
-            <button className={`w-full font-bold py-3 rounded-xl transition-all shadow-sm
+            <button 
+            onClick={() => handleClaimRequest(req.id)}
+            className={`w-full font-bold py-3 rounded-xl transition-all shadow-sm
               ${req.status === 'Claimed' 
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
                 : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md'}`}
