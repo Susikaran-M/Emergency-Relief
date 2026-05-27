@@ -5,6 +5,44 @@ const Dashboard = () =>{
     const [category,setcategory] = useState('Supplies');
     const [urgency, setUrgency] = useState('High');
     const [description, setDescription] = useState('');
+    const handeleSubmit = async (e) => {
+        e.preventDefault();
+
+        const newRequest = {
+          title: title,
+          location: location,
+          category: category,
+          urgency: urgency,
+          description: description,
+          status: 'Open'
+        };
+
+        try {
+          const response = await fetch('http://localhost:8000/requests', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newRequest)
+          });
+
+          if (response.ok) {
+            // Request submitted successfully
+           alert("Request successfully posted!");
+            // Reset form fields
+            setTitle('');
+            setLocation('');
+            setcategory('Supplies');
+            setUrgency('High');
+            setDescription('');
+          } else {
+            // Handle error
+            console.error('Error submitting request');
+          }
+        } catch (error) {
+          console.error('Error submitting request:', error);
+        }
+    };
     return(
 <div className="container mx-auto p-8 max-w-3xl">
       <h1 className="text-3xl font-bold mb-8 text-gray-900">Post a New Relief Request</h1>
@@ -69,7 +107,9 @@ const Dashboard = () =>{
             />
           </div>
 
-          <button type="submit" className="mt-4 bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition-colors">
+          <button type="submit" className="mt-4 bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition-colors"
+          onClick={handeleSubmit}
+          >
           Post Request
         </button>
 

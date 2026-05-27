@@ -35,6 +35,15 @@
       "category": "Supplies",
       "status": "Claimed",
       "description": "Collecting gently used warm clothes and blankets for displaced families."
+    },
+    {
+      "title": "Need volunteers to guide people",
+      "location": "Chennai",
+      "category": "Manpower",
+      "urgency": "Medium",
+      "description": "There is a flood in raypuram , we need a help to guide the peoples to the safest shelter",
+      "status": "Open",
+      "id": "jjVyZg6NcFU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
