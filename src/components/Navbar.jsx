@@ -11,7 +11,9 @@ const Navbar = () => {
         <div className="space-x-6 flex items-center">
           <Link to="/" className="hover:text-blue-300 transition-colors">Needs Board</Link>
           <Link to="/dashboard" className="hover:text-blue-300 transition-colors">NGO Dashboard</Link>
-          <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-semibold transition-colors">
+          <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-semibold transition-colors"
+        
+          >
             Login
           </button>
         </div>
