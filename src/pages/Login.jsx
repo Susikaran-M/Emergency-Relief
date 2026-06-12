@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
     if(password === 'admin123') {
         login();
-        navigate('/dashboard');
+        navigate('/');
     } else {
         alert('Incorrect password. Please try again.');
     }
