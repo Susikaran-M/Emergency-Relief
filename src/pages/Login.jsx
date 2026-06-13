@@ -1,9 +1,10 @@
 import { useState,useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../components/Modal';
 const Login = () => {
  const [password, setPassword] = useState('');   
- 
+ const [isModalOpen, setIsModalOpen] = useState(false);
  //extract login from context and bring navigate
 
  const{login} = useContext(AuthContext);
@@ -14,7 +15,9 @@ const Login = () => {
         login();
         navigate('/');
     } else {
-        alert('Incorrect password. Please try again.');
+        // alert('Incorrect password. Please try again.');
+        setIsModalOpen(true);
+       
     }
  };
 
@@ -34,6 +37,12 @@ const Login = () => {
         Login
        </button>
        </form>
+        <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        >
+        <h1>Incorrect password. Please try again.</h1>
+        </Modal>
        </div>
     );
 };
