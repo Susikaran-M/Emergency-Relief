@@ -1,27 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
+import useRelifData from "../hooks/useRelifData";
 const Home = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [requests, setRequests] = useState([]);
   const [filterCategory, setFilterCategory] = useState("All");
   const [showOnlyOpen,setShowOnlyOpen] = useState(false);
- 
-  useEffect( ()=>{
-     const fetchRequests = async () => {
-    try {
-      const response = await fetch("http://localhost:8000/requests");
-      if(!response.ok) {
-        throw new Error("Failed to fetch requests");
-      }
-      const data = await response.json();
-      setRequests(data);
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    }
-  };
-    fetchRequests()}, []);
+ const { loading, error, requests, setRequests } = useRelifData();
+  
   const handleClaimRequest = async (id) => {
     try{
       //sending the patch request
